@@ -197,6 +197,7 @@ class WheelOfFortune extends Component {
   );
 
   _renderSvgWheel = () => {
+    const { started } = this.state;
     return (
       <View style={styles.container}>
         {this._renderKnob()}
@@ -248,7 +249,7 @@ class WheelOfFortune extends Component {
                     <G
                       rotation={
                         (i * this.oneTurn) / this.numberOfSegments +
-                        this.angleOffset / 1.5
+                        this.angleOffset / (started ? 1.4 : 1.6)
                       }
                       origin={`${x}, ${y}`}>
                       {this._textRender(x, y, number, i)}
