@@ -366,7 +366,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  content: {},
+  content: {
+    width: width - 50,
+    height: width - 50,
+  },
   startText: {
     fontSize: 50,
     color: '#fff',
