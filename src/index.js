@@ -40,7 +40,7 @@ class WheelOfFortune extends Component {
     this.fontSize = 15;
     this.oneTurn = 360;
     this.angleBySegment = this.oneTurn / this.numberOfSegments;
-    this.angleOffset = this.angleBySegment / 2;
+    this.angleOffset = this.angleBySegment;
     this.winner = this.props.winner
       ? this.props.winner
       : Math.floor(Math.random() * this.numberOfSegments);
@@ -138,6 +138,7 @@ class WheelOfFortune extends Component {
   };
 
   _onPress = () => {
+    this.angleOffset = this.angleBySegment / 1.4;
     const duration = this.props.options.duration || 10000;
 
     this.setState({
@@ -280,7 +281,7 @@ class WheelOfFortune extends Component {
 
     return (
       <Animated.View
-        style={{
+        style={[{
           width: knobSize,
           height: knobSize * 2,
           justifyContent: 'flex-end',
@@ -303,7 +304,7 @@ class WheelOfFortune extends Component {
               }),
             },
           ],
-        }}>
+        }, this.props.knobStyle]}>
         <Svg
           width={knobSize}
           height={(knobSize * 100) / 57}
