@@ -248,7 +248,7 @@ class WheelOfFortune extends Component {
                     <G
                       rotation={
                         (i * this.oneTurn) / this.numberOfSegments +
-                        this.angleOffset
+                        this.angleOffset / 1.5
                       }
                       origin={`${x}, ${y}`}>
                       {this._textRender(x, y, number, i)}
