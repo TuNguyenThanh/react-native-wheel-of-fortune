@@ -6,7 +6,8 @@ import {
   Animated,
   TouchableOpacity,
   Image,
-} from 'react-native';
+  ImageBackground,
+} from "react-native"
 import * as d3Shape from 'd3-shape';
 
 import Svg, {G, Text, TSpan, Path, Pattern} from 'react-native-svg';
@@ -23,7 +24,7 @@ class WheelOfFortune extends Component {
       started: false,
       finished: false,
       winner: null,
-      gameScreen: new Animated.Value(width - 86),
+      gameScreen: new Animated.Value(width - 106),
       wheelOpacity: new Animated.Value(1),
       imageLeft: new Animated.Value(width / 2 - 30),
       imageTop: new Animated.Value(height / 2 - 70),
@@ -57,7 +58,7 @@ class WheelOfFortune extends Component {
       started: false,
       finished: false,
       winner: null,
-      gameScreen: new Animated.Value(width - 86),
+      gameScreen: new Animated.Value(width - 106),
       wheelOpacity: new Animated.Value(1),
       imageLeft: new Animated.Value(width / 2 - 30),
       imageTop: new Animated.Value(height / 2 - 70),
@@ -112,7 +113,7 @@ class WheelOfFortune extends Component {
     return arcs.map((arc, index) => {
       const instance = d3Shape
         .arc()
-        .padAngle(0.02)
+        .padAngle(0.0)
         .outerRadius(width / 2)
         .innerRadius(this.props.options.innerRadius || 100);
       return {
@@ -220,9 +221,10 @@ class WheelOfFortune extends Component {
             backgroundColor: this.props.options.backgroundColor
               ? this.props.options.backgroundColor
               : '#fff',
-            width: width - 50,
-            height: width - 50,
-            borderRadius: (width - 50) / 2,
+            width: width - 100,
+            height: width - 100,
+            borderRadius: (width - 100) / 2,
+            marginTop: -10,
             //borderWidth: this.props.options.borderWidth
             //  ? this.props.options.borderWidth
             //  : 2,
@@ -328,13 +330,18 @@ class WheelOfFortune extends Component {
   };
 
   _renderTopToPlay() {
-    if (this.state.started == false) {
-      return (
-        <TouchableOpacity onPress={() => this._onPress()}>
-          {this.props.options.playButton()}
-        </TouchableOpacity>
-      );
-    }
+    return this.props.playButton()
+    //if (this.state.started == false) {
+    //  return (
+    //    <TouchableOpacity
+    //      onPress={() => this._onPress()}
+    //      activeOpacity={0.7}
+    //      disabled={this.state.started}
+    //    >
+    //      {this.props.playButton()}
+    //    </TouchableOpacity>
+    //  );
+    //}
   }
 
   render() {
@@ -348,11 +355,21 @@ class WheelOfFortune extends Component {
             justifyContent: 'center',
             alignItems: 'center',
           }}>
-          <Animated.View style={[styles.content, { padding: 10 }]}>
-            {this._renderSvgWheel()}
-          </Animated.View>
+          <ImageBackground
+            style={{
+              width: width,
+              height: width,
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            source={require("../../../assets/stock-quiz/img-stockquiz-cover.png")}
+          >
+            <Animated.View style={[styles.content, { padding: 10 }]}>
+              {this._renderSvgWheel()}
+            </Animated.View>
+          </ImageBackground>
         </View>
-        {this.props.options.playButton ? this._renderTopToPlay() : null}
+        {this.props.playButton ? this._renderTopToPlay() : null}
       </View>
     );
   }
@@ -367,8 +384,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   content: {
-    width: width - 50,
-    height: width - 50,
+    width: width - 80,
+    height: width - 80,
   },
   startText: {
     fontSize: 50,
