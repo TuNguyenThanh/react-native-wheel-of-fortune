@@ -362,7 +362,7 @@ class WheelOfFortune extends Component {
               alignItems: 'center',
               justifyContent: 'center',
             }}
-            source={require("../../../assets/stock-quiz/img-stockquiz-cover.png")}
+            source={require("../../../assets/stock-quiz/img-stockquiz-cover.gif")}
           >
             <Animated.View style={[styles.content, { padding: 10 }]}>
               {this._renderSvgWheel()}
