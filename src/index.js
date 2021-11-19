@@ -38,7 +38,7 @@ class WheelOfFortune extends Component {
     this.Rewards = this.props.options.rewards;
     this.RewardCount = this.Rewards.length;
     this.numberOfSegments = this.RewardCount;
-    this.fontSize = 15;
+    this.fontSize = 13;
     this.oneTurn = 360;
     this.angleBySegment = this.oneTurn / this.numberOfSegments;
     this.angleOffset = this.angleBySegment;
@@ -168,15 +168,24 @@ class WheelOfFortune extends Component {
       fill={
         this.props.options.textColor ? this.props.options.textColor : '#fff'
       }
-      textAnchor="middle"
-      fontSize={this.fontSize}
-      fontWeight={'500'}
+      //textAnchor="middle"
+      //fontSize={this.fontSize}
+      //fontWeight={'500'}
     >
       {Array.from({length: number.length}).map((_, j) => {
         // Render reward text vertically
         if (this.props.options.textAngle === 'vertical') {
           return (
-            <TSpan x={x} dy={this.fontSize} key={`arc-${i}-slice-${j}`}>
+            <TSpan
+              x={x - 5}
+              dy={12}
+              key={`arc-${i}-slice-${j}`}
+              rotate={90}
+              fill={this.props.options.textColor}
+              fontWeight="bold"
+              fontSize={14}
+              fontFamily={Platform.select({ ios: "Roboto-Medium", android: "Roboto-Medium" })}
+            >
               {number.charAt(j)}
             </TSpan>
           );
@@ -187,7 +196,8 @@ class WheelOfFortune extends Component {
             <TSpan
               y={y - 50}
               dx={this.fontSize * 0.07}
-              key={`arc-${i}-slice-${j}`}>
+              key={`arc-${i}-slice-${j}`}
+            >
               {number.charAt(j)}
             </TSpan>
           );
