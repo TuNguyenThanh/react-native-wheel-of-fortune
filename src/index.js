@@ -161,6 +161,21 @@ class WheelOfFortune extends Component {
     });
   };
 
+  getSpaceText = (charAt) => {
+    switch (charAt) {
+      case 'I':
+      case 'i':
+        return 7
+      case 'M':
+      case 'm':
+      case 'W':
+      case 'w':
+        return 15
+      default:
+        return 12
+    }
+  }
+
   _textRender = (x, y, number, i) => (
     <Text
       x={x - number.length * 5}
@@ -177,13 +192,13 @@ class WheelOfFortune extends Component {
         if (this.props.options.textAngle === 'vertical') {
           return (
             <TSpan
-              x={x - 5}
-              dy={12}
+              x={x - 8}
+              dy={this.getSpaceText(number.charAt(j - 1))}
               key={`arc-${i}-slice-${j}`}
               rotate={90}
               fill={this.props.options.textColor}
               fontWeight="bold"
-              fontSize={14}
+              fontSize={16}
               fontFamily={Platform.select({ ios: "Roboto-Medium", android: "Roboto-Medium" })}
             >
               {number.charAt(j)}
