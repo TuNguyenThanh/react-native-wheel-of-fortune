@@ -42,9 +42,9 @@ class WheelOfFortune extends Component {
     this.oneTurn = 360;
     this.angleBySegment = this.oneTurn / this.numberOfSegments;
     this.angleOffset = this.angleBySegment;
-    this.winner = this.props.winner
-      ? this.props.winner
-      : Math.floor(Math.random() * this.numberOfSegments);
+    this.winner = this.props.winner;
+      //? this.props.winner
+      //: Math.floor(Math.random() * this.numberOfSegments);
 
     this._wheelPaths = this.makeWheel();
     this._angle = new Animated.Value(0);
@@ -138,17 +138,16 @@ class WheelOfFortune extends Component {
     );
   };
 
-  _onPress = () => {
+  _onPress = (winner) => {
     this.angleOffset = this.angleBySegment / 1.4;
     const duration = this.props.options.duration || 10000;
-
     this.setState({
       started: true,
     });
     Animated.timing(this._angle, {
       toValue:
         365 -
-        this.winner * (this.oneTurn / this.numberOfSegments) +
+        winner * (this.oneTurn / this.numberOfSegments) +
         360 * (duration / 1000),
       duration: duration,
       useNativeDriver: true,
