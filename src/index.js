@@ -179,7 +179,7 @@ class WheelOfFortune extends Component {
   _textRender = (x, y, number, i) => (
     <Text
       x={x - number.length * 5}
-      y={y - 80}
+      y={y - (width / 5.2)} // 80
       fill={
         this.props.options.textColor ? this.props.options.textColor : '#fff'
       }
@@ -245,10 +245,10 @@ class WheelOfFortune extends Component {
             backgroundColor: this.props.options.backgroundColor
               ? this.props.options.backgroundColor
               : '#fff',
-            width: width - 100,
-            height: width - 100,
+            width: width - 110,
+            height: width - 110,
             borderRadius: (width - 100) / 2,
-            marginTop: -10,
+
             //borderWidth: this.props.options.borderWidth
             //  ? this.props.options.borderWidth
             //  : 2,
@@ -258,12 +258,12 @@ class WheelOfFortune extends Component {
             opacity: this.state.wheelOpacity,
           }}>
           <AnimatedSvg
-            width={this.state.gameScreen}
-            height={this.state.gameScreen}
+            width={width - (width / 3.8)}
+            height={width - (width / 3.8)}
             viewBox={`0 0 ${width} ${width}`}
             style={{
               transform: [{rotate: `-${this.angleOffset}deg`}],
-              margin: 10,
+              //margin: 10,
             }}>
             <G y={width / 2} x={width / 2}>
               {this._wheelPaths.map((arc, i) => {
@@ -386,9 +386,10 @@ class WheelOfFortune extends Component {
               alignItems: 'center',
               justifyContent: 'center',
             }}
+            //resizeMode={'contain'}
             source={require("../../../assets/stock-quiz/img-stockquiz-cover.gif")}
           >
-            <Animated.View style={[styles.content, { padding: 10 }]}>
+            <Animated.View style={styles.content}>
               {this._renderSvgWheel()}
             </Animated.View>
           </ImageBackground>
@@ -408,8 +409,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   content: {
-    width: width - 80,
-    height: width - 80,
+    width: width - (width / 4.2),
+    height: width - (width / 4.2),
+    borderRadius: (width - (width / 4.2)) / 2,
+    marginTop: -8
   },
   startText: {
     fontSize: 50,
