@@ -171,6 +171,8 @@ class WheelOfFortune extends Component {
       case 'W':
       case 'w':
         return 15
+      case 'l':
+        return 7
       default:
         return 12
     }
