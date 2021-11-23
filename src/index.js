@@ -197,7 +197,7 @@ class WheelOfFortune extends Component {
           return (
             <TSpan
               x={x - 8}
-              dy={this.getSpaceText(number.charAt(j - 1).toUpperCase())}
+              dy={this.getSpaceText(number.charAt(j - 1))}
               key={`arc-${i}-slice-${j}`}
               rotate={90}
               fill={this.props.options.textColor}
@@ -205,7 +205,7 @@ class WheelOfFortune extends Component {
               fontSize={16}
               fontFamily={Platform.select({ ios: "Roboto-Medium", android: "Roboto-Medium" })}
             >
-              {number.charAt(j).toUpperCase()}
+              {number.charAt(j)}
             </TSpan>
           );
         }
